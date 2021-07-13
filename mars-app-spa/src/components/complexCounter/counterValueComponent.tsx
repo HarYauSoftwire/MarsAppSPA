@@ -1,13 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import { counterContext } from "./counterParentComponent";
 
-type CounterValueProp = {
-    value: number;
-};
-
-export const CounterValue: React.FC<CounterValueProp> = ({ value }) => {
+export const CounterValue: React.FC = () => {
+    const counter = useContext(counterContext);
     return (
         <>
-            <h3>{value}</h3>
+            <h3>{counter.count}</h3>
         </>
     );
 };

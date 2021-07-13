@@ -2,17 +2,13 @@ import React from "react";
 import { CounterValue } from "./counterValueComponent";
 
 type CounterMessageProp = {
-    value: number;
     message: string;
 };
 
-export const CounterMessage: React.FC<CounterMessageProp> = ({
-    value,
-    message,
-}) => {
+export const CounterMessage: React.FC<CounterMessageProp> = ({ message }) => {
     return (
         <>
-            <CounterValue value={value} />
+            <CounterValue />
             <p>{message}</p>
         </>
     );
