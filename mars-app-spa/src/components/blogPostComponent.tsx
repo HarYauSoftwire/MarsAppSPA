@@ -1,4 +1,5 @@
 import React from "react";
+import "./blogPostComponent.css"
 
 type InfoProps = {
     title: string;
@@ -18,7 +19,7 @@ export const BlogPost: React.FC<InfoProps> = ({
             <h1>{title}</h1>
             <p>{content1}</p>
             <p>{content2}</p>
-            <img src={imgSource} alt="" />
+            <img className="blogImage" src={imgSource} alt="" />
         </>
     );
 };
