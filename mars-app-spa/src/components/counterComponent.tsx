@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./counterComponent.css";
 
 export const Counter: React.FC<{ title: string }> = ({ title }) => {
-    let [clickCount, setStateCount] = React.useState(
-        Number(localStorage.getItem("clickCount") || 0)
-    );
+    let [clickCount, setStateCount] = React.useState(0);
+    useEffect(() => {
+        clickCount = Number(localStorage.getItem("clickCount") || 0);
+    });
     return (
         <>
             <button
