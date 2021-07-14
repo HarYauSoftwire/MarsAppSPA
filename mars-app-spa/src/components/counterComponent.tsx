@@ -1,17 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./counterComponent.css";
 
 export const Counter: React.FC<{ title: string }> = ({ title }) => {
-    let [clickCount, setStateCount] = React.useState(
-        Number(localStorage.getItem("clickCount") || 0)
-    );
+    const [clickCount, setCount] = useState(0);
+    useEffect(() => {
+        setCount(Number(localStorage.getItem("clickCount") || 0));
+    }, []);
+    useEffect(() => {
+        localStorage.setItem("clickCount", clickCount.toString());
+    }, [clickCount]);
     return (
         <>
             <button
                 className="counter"
                 onClick={() => {
-                    clickCount += 1;
-                    setClickCount(setStateCount, clickCount);
+                    setCount(clickCount + 1);
                 }}
             >
                 {title}: {clickCount}
@@ -19,8 +22,7 @@ export const Counter: React.FC<{ title: string }> = ({ title }) => {
             <button
                 className="counter"
                 onClick={() => {
-                    clickCount *= 2;
-                    setClickCount(setStateCount, clickCount);
+                    setCount(clickCount * 2);
                 }}
             >
                 Double
@@ -28,8 +30,7 @@ export const Counter: React.FC<{ title: string }> = ({ title }) => {
             <button
                 className="counter"
                 onClick={() => {
-                    clickCount = 0;
-                    setClickCount(setStateCount, clickCount);
+                    setCount(0);
                 }}
             >
                 Reset
@@ -37,11 +38,3 @@ export const Counter: React.FC<{ title: string }> = ({ title }) => {
         </>
     );
 };
-
-function setClickCount(
-    setClickCount: React.Dispatch<React.SetStateAction<number>>,
-    clickCount: number
-) {
-    setClickCount(clickCount);
-    localStorage.setItem("clickCount", clickCount.toString());
-}
